@@ -13,15 +13,62 @@ namespace QuizzCapitales
 
       static string[] capitales = { "Paris", "Berlin", "Madrid", "Rome", "Athènes", "Stockholm", "Lisbonne", "Bruxelles", "Berne", "Oslo" };
 
+      // Methode PoserQuestions
+
+      static bool PoserQuestions(int indicePays)
+      {
+         //if (indicePays < 0 ||  indicePays > pays.Length)
+         //{
+         //   return false;
+         //}
+
+         Console.WriteLine($"Quelle est la capitale de {pays[indicePays]} ?");
+         string? rep = Console.ReadLine();
+
+         if (rep?.ToUpper() == capitales[indicePays].ToUpper()) 
+         { 
+            Console.WriteLine($"Bravo t'es trop smart, tu as trouvé !!");
+            return true;
+         } else 
+         {
+            Console.WriteLine($"T'es trop nul la réponse était : {capitales[indicePays]}");
+           return false;
+         }
+
+
+
+      }
+
+      static bool DemandeSiRejouer ()
+      {
+       
+
+         Console.WriteLine("Voulez-vous rejouer O/N ?");
+         string? reponse = Console.ReadLine();
+         if (reponse == "O")
+         {
+            Console.WriteLine("\nC'est partie pour une nouvelle game !!");
+            return true;
+
+
+         }
+         else
+         {
+            Console.WriteLine("Merci d'avoir jouer avec nous !!");
+            return false;
+
+         }
+      }
+
       //Methode statique Jouer
 
       public static void Jouer()
       {
 
-         bool rejouerOk = true;
+         bool rejouer = true;
 
 
-         while (rejouerOk)
+         while (rejouer)
          {
 
             int nbBonnesReponses = 0;
@@ -30,21 +77,22 @@ namespace QuizzCapitales
             {
                //if (i % 2 == 0)
                //{
-               Console.WriteLine("Donne-moi la capitale de ce pays ? : ");
-               Console.WriteLine(pays[i]);
-               string? rep = Console.ReadLine();
+
+               bool reponseCorrecte = PoserQuestions(i);
 
 
-               if (rep?.ToUpper() == capitales[i].ToUpper())
-               {
-                  Console.WriteLine("Bravo tu as trouvé, tu es vraiment trop fort");
-                  nbBonnesReponses++;
-               }
-               else
-               {
-                  Console.WriteLine($"Non la réponse était {capitales[i]}");
+               //Console.WriteLine(pays[i]);
+               //string? rep = Console.ReadLine();
+               //if (rep?.ToUpper() == capitales[i].ToUpper())
+               //{
+               //   Console.WriteLine("Bravo tu as trouvé, tu es vraiment trop fort");
+               nbBonnesReponses++;
+               //}
+               //else
+               //{
+               //   Console.WriteLine($"Non la réponse était {capitales[i]}");
 
-               }
+               //}
 
                Console.WriteLine($"Tu as eu {nbBonnesReponses} bonnes réponses sur {pays.Length}");
 
@@ -54,21 +102,9 @@ namespace QuizzCapitales
                //}
 
             }
-            Console.WriteLine("Voulez-vous rejouer O/N ?");
-            string? reponse = Console.ReadLine();
-            if (reponse == "O")
-            {
-               rejouerOk = true;
-               Console.WriteLine("\nC'est partie pour une nouvelle game !!");
 
+            rejouer = DemandeSiRejouer();
 
-            }
-            else
-            {
-               Console.WriteLine("Merci d'avoir jouer avec nous !!");
-               break;
-
-            }
          }
          Console.Clear();
       }
