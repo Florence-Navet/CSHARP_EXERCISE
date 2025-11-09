@@ -11,7 +11,8 @@ namespace QuizzCapitales
 
          //Quizz.Jouer();
 
-         Quizz.Jouer(2, 4, 5);
+         //Quizz.Jouer(2, 4, 5);
+         Quizz.Jouer(3, 6, 10, 12);
 
 
 

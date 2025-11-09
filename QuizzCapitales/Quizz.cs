@@ -124,7 +124,7 @@ namespace QuizzCapitales
 
             foreach (int numero in numerosQuestions)
             {
-               if (numero >= 1 || numero <= 10)
+               if (numero >= 1 && numero <= 10)
                {
 
                   int indice = numero - 1;
@@ -148,17 +148,11 @@ namespace QuizzCapitales
             rejouer = DemandeSiRejouer();
               
 
-               
-           
-
-
-
             
          }
          Console.Clear( );
 
-            
-           
+   
 
       }
 
