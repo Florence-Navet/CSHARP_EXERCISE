@@ -54,6 +54,7 @@ namespace QuizzCapitales
             if (reponse == "O")
             {
                rejouerOk = true;
+               Console.WriteLine("\nC'est partie pour une nouvelle game !!");
 
             
             } else
