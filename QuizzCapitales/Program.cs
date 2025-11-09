@@ -13,10 +13,10 @@ namespace QuizzCapitales
          string[] capitales = {"Paris", "Berlin", "Madrid", "Rome", "Athènes", "Stockholm", "Lisbonne", "Bruxelles", "Berne", "Oslo" };
 
 
-         bool rejouerOk = false;
+         bool rejouerOk = true;
 
 
-         while (!rejouerOk)
+         while (rejouerOk)
          {
 
             int nbBonnesReponses = 0;
@@ -54,6 +54,8 @@ namespace QuizzCapitales
             if (reponse == "O")
             {
                rejouerOk = true;
+
+            
             } else
             {
                Console.WriteLine("Merci d'avoir jouer avec nous !!");
