@@ -9,7 +9,9 @@ namespace QuizzCapitales
             Console.WriteLine("Hello, World!");
 
 
-         Quizz.Jouer();
+         //Quizz.Jouer();
+
+         Quizz.Jouer(2, 4, 5);
 
 
 

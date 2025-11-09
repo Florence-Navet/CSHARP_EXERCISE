@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,23 +26,24 @@ namespace QuizzCapitales
          Console.WriteLine($"Quelle est la capitale de {pays[indicePays]} ?");
          string? rep = Console.ReadLine();
 
-         if (rep?.ToUpper() == capitales[indicePays].ToUpper()) 
-         { 
+         if (rep?.ToUpper() == capitales[indicePays].ToUpper())
+         {
             Console.WriteLine($"Bravo t'es trop smart, tu as trouvé !!");
             return true;
-         } else 
+         }
+         else
          {
             Console.WriteLine($"T'es trop nul la réponse était : {capitales[indicePays]}");
-           return false;
+            return false;
          }
 
 
 
       }
 
-      static bool DemandeSiRejouer ()
+      static bool DemandeSiRejouer()
       {
-       
+
 
          Console.WriteLine("Voulez-vous rejouer O/N ?");
          string? reponse = Console.ReadLine();
@@ -108,5 +110,61 @@ namespace QuizzCapitales
          }
          Console.Clear();
       }
+
+      public static void Jouer(params int[] numerosQuestions)
+      {
+         bool rejouer = true;
+
+
+         while (rejouer)
+         {
+
+            int nbBonnesReponses = 0;
+            int NbQuestionsPosees = 0;
+
+            foreach (int numero in numerosQuestions)
+            {
+               if (numero >= 1 || numero <= 10)
+               {
+
+                  int indice = numero - 1;
+
+                  bool reponseCorrecte = PoserQuestions(indice);
+
+                  if (reponseCorrecte)
+                  {
+                     nbBonnesReponses++;
+
+                  }
+                  NbQuestionsPosees++;
+               } else
+               {
+                  Console.WriteLine($"Le numero {numero} est invalide. Ignoré");
+               }
+
+            }
+            Console.WriteLine($"Tu as eu {nbBonnesReponses} bonnes réponses sur {pays.Length}");
+
+            rejouer = DemandeSiRejouer();
+              
+
+               
+           
+
+
+
+            
+         }
+         Console.Clear( );
+
+            
+           
+
+      }
+
    }
 }
+  
+      
+   
+
