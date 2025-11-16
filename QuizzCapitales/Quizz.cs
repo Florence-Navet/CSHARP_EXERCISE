@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.Design;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -59,6 +60,44 @@ namespace QuizzCapitales
 
 
         }
+
+        public static (int, int, int) Generer3Numeros()
+        {
+            (int n1, int n2, int n3) numeros;
+            Random rand = new Random();
+            numeros.n1 = rand.Next (1,11);
+            numeros.n2 = rand.Next (1,11);
+            numeros.n3 = rand.Next (1,11);
+
+            return numeros;
+
+        }
+
+        public static (int, int, int) Saisir3Numeros()
+        {
+            (int n1, int n2, int n3) numeros;
+            numeros.n1 = SaisirNombre(1, 10);
+            numeros.n2 = SaisirNombre(1, 10);
+            numeros.n3 = SaisirNombre(1, 10);
+            return numeros;
+        }
+
+        static int SaisirNombre(int min, int max)
+        {
+            bool repOk;
+            int nombre;
+            do
+            {
+                 Console.WriteLine($"Entrez un nombre entre {min} et {max} :" );
+                string? saisie = Console.ReadLine();
+                repOk = int.TryParse(saisie, out nombre) && nombre >= min && nombre <= max;
+                  
+
+            } while (!repOk);
+
+            return nombre;
+        }
+
         static bool DemandeSiRejouer()
         {
 
