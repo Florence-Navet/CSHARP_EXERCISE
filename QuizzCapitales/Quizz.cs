@@ -65,9 +65,9 @@ namespace QuizzCapitales
         {
             (int n1, int n2, int n3) numeros;
             Random rand = new Random();
-            numeros.n1 = rand.Next (1,11);
-            numeros.n2 = rand.Next (1,11);
-            numeros.n3 = rand.Next (1,11);
+            numeros.n1 = rand.Next(1, 11);
+            numeros.n2 = rand.Next(1, 11);
+            numeros.n3 = rand.Next(1, 11);
 
             return numeros;
 
@@ -80,6 +80,7 @@ namespace QuizzCapitales
             numeros.n2 = SaisirNombre(1, 10);
             numeros.n3 = SaisirNombre(1, 10);
             return numeros;
+
         }
 
         static int SaisirNombre(int min, int max)
@@ -88,10 +89,10 @@ namespace QuizzCapitales
             int nombre;
             do
             {
-                 Console.WriteLine($"Entrez un nombre entre {min} et {max} :" );
+                Console.WriteLine($"Entrez un nombre entre {min} et {max} :");
                 string? saisie = Console.ReadLine();
                 repOk = int.TryParse(saisie, out nombre) && nombre >= min && nombre <= max;
-                  
+
 
             } while (!repOk);
 

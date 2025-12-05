@@ -17,9 +17,9 @@ namespace QuizzCapitales
 
             //Quizz.Generer3Numeros(out a, out b, out c);
             //Console.WriteLine($"Les trois numéros générés sont {a}, {b}, et {c}");
-            Console.WriteLine("Test duplicat");
-            Console.WriteLine("Test duplicat");
-            Console.WriteLine("Test duplicat");
+            Console.WriteLine("Test pour test contrl H");
+            Console.WriteLine("Test pour test contrl H");
+            Console.WriteLine("Test pour test contrl H");
             //Quizz.Jouer(a,b,c);
 
             //(int n1, int n2, int n3) = Quizz.Generer3Numeros();

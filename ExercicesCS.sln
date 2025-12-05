@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.36623.8 d17.14
+VisualStudioVersion = 17.14.36623.8
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuizzCapitales", "QuizzCapitales\QuizzCapitales.csproj", "{AE95A11D-3B5F-4FCA-AD98-CC292F48097B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RelevésMétéo", "RelevésMétéo\RelevésMétéo.csproj", "{EAFDA61C-A4B7-46E6-999D-DF58D4B23781}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{AE95A11D-3B5F-4FCA-AD98-CC292F48097B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AE95A11D-3B5F-4FCA-AD98-CC292F48097B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AE95A11D-3B5F-4FCA-AD98-CC292F48097B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EAFDA61C-A4B7-46E6-999D-DF58D4B23781}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EAFDA61C-A4B7-46E6-999D-DF58D4B23781}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EAFDA61C-A4B7-46E6-999D-DF58D4B23781}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EAFDA61C-A4B7-46E6-999D-DF58D4B23781}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
