@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuizzCapitales", "QuizzCapi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RelevésMétéo", "RelevésMétéo\RelevésMétéo.csproj", "{EAFDA61C-A4B7-46E6-999D-DF58D4B23781}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalendrierPerpetuel", "CalendrierPerpetuel\CalendrierPerpetuel.csproj", "{7FB03ADA-56C8-4B4B-8566-642B732B06AD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{EAFDA61C-A4B7-46E6-999D-DF58D4B23781}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EAFDA61C-A4B7-46E6-999D-DF58D4B23781}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EAFDA61C-A4B7-46E6-999D-DF58D4B23781}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7FB03ADA-56C8-4B4B-8566-642B732B06AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7FB03ADA-56C8-4B4B-8566-642B732B06AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7FB03ADA-56C8-4B4B-8566-642B732B06AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7FB03ADA-56C8-4B4B-8566-642B732B06AD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
