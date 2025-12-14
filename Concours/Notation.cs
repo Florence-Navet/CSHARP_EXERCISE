@@ -67,11 +67,12 @@ internal class Notation
       
       var etudiants = ChargerDonnées();
 
-      int NbAdmis = 5;
+      int NbAdmis = 50;
 
       if (etudiants == null) return;
 
       var etudiantsTries = etudiants.OrderByDescending(e => e.note).ToList();
+      Console.WriteLine($"Résultat du concours :\n");
 
       for (int i = 0; i < etudiantsTries.Count; i++)
       {
