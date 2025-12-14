@@ -128,30 +128,30 @@ internal static class CalculateurCalendrier
 		return (x > 0.0 ? Math.Floor(x) : Math.Ceiling(x));
 	}
 
-   public static void AfficherDatesDebutsSaisons(int annee)
-   {
+	public static void AfficherDatesDebutsSaisons(int annee)
+	{
 
-      string format = "ddd dd MMM yyyy";
-      var fr = CultureInfo.GetCultureInfo("fr-FR");
+		string format = "ddd dd MMM yyyy";
+		var fr = CultureInfo.GetCultureInfo("fr-FR");
 
-      var saisons = CalculerDatesDébutsSaisons(annee);
-      string entetes = $"""
-	Dates de débuts de saisons de l'année 2025
+		var saisons = CalculerDatesDébutsSaisons(annee);
+		string entetes = $"""
+	Dates de débuts de saisons de l'année {annee}
 ------------------------------------------------------
 - printemps : {saisons.printemps.ToString(format, fr)}
 - été : {saisons.été.ToString(format, fr)}
 - automne : {saisons.automne.ToString(format, fr)}
 - hiver : {saisons.hiver.ToString(format, fr)}
 """;
-      Console.WriteLine(entetes);
+		Console.WriteLine(entetes);
 
 
-   }
+	}
 
 	public static void CalculerJoursFériésFrançais(int annee)
 	{
-      var fr = CultureInfo.GetCultureInfo("fr-FR");
-      string format = "ddd dd MMM";
+		var fr = CultureInfo.GetCultureInfo("fr-FR");
+		string format = "ddd dd MMM";
 
 		DateOnly paques = CalculerDatePaques(annee);
 
@@ -161,29 +161,146 @@ internal static class CalculateurCalendrier
 			(paques, "Pâques"),
 			(paques.AddDays(1),"lundi de Pâques"),
 			(new DateOnly(annee, 5, 1), "Fête du travail"),
-         (new DateOnly(annee, 5, 8), "Armistice"),
-         (paques.AddDays(39),"Ascension"),
-         (paques.AddDays(49),"Pentecôte"),
-         (paques.AddDays(50),"Lundi de Pentecôte"),
-         (new DateOnly(annee, 7, 14), "Fête Nationale"),
-         (new DateOnly(annee, 8, 15), "Assomption"),
-         (new DateOnly(annee, 11, 1), "Toussaint"),
-         (new DateOnly(annee, 11, 11), "Armistice 1918"),
-         (new DateOnly(annee, 12, 25), "Noël"),
-      };
+			(new DateOnly(annee, 5, 8), "Armistice 1945"),
+			(paques.AddDays(39),"Ascension"),
+			(paques.AddDays(49),"Pentecôte"),
+			(paques.AddDays(50),"Lundi de Pentecôte"),
+			(new DateOnly(annee, 7, 14), "Fête Nationale"),
+			(new DateOnly(annee, 8, 15), "Assomption"),
+			(new DateOnly(annee, 11, 1), "Toussaint"),
+			(new DateOnly(annee, 11, 11), "Armistice 1918"),
+			(new DateOnly(annee, 12, 25), "Noël"),
+		};
 
 		JourFeries.Sort((a, b) => a.date.CompareTo(b.date));
 
 
-      Console.WriteLine($"Jours fériés de l'année {annee}");
-      Console.WriteLine("----------------------------------------");
+		Console.WriteLine($"Jours fériés de l'année {annee}");
+		Console.WriteLine("----------------------------------------");
 
 
-      foreach (var jf in JourFeries)
-      {
-         Console.WriteLine(
+		foreach (var jf in JourFeries)
+		{
+			Console.WriteLine(
 				$"{jf.date.ToString(format, fr),-12}:{jf.nom}");
-      }
-   }
+		}
+	}
+
+	public static (DateTimeOffset heureEte, DateTimeOffset heureHiver)
+		CalculerChangementsHeures(int annee)
+	{
+		DateOnly dernierDimancheMars = DernierDimanche(annee, 3);
+		DateOnly dernierDimancheOctobre = DernierDimanche(annee, 10);
+
+		DateTimeOffset passageHeureEte =
+			new DateTimeOffset(
+				dernierDimancheMars.Year,
+				dernierDimancheMars.Month,
+				dernierDimancheMars.Day,
+				2, 0, 0,
+				TimeSpan.FromHours(1));
+
+		DateTimeOffset passageHeureHiver =
+			new DateTimeOffset(
+			dernierDimancheOctobre.Year,
+			dernierDimancheOctobre.Month,
+			dernierDimancheOctobre.Day,
+			3, 0, 0,
+			TimeSpan.FromHours(2)
+			);
+
+		return (passageHeureEte, passageHeureHiver);
+	}
+
+	private static DateOnly DernierDimanche(int annee, int mois)
+	{
+		DateOnly d = new DateOnly(annee, mois, DateTime.DaysInMonth(annee, mois));
+		while (d.DayOfWeek != DayOfWeek.Sunday)
+			d = d.AddDays(-1);
+		return d;
+	}
+
+	public static void AfficherHeureEteHeureHiver(int annee)
+	{
+		var fr = CultureInfo.GetCultureInfo("fr-FR");
+		string format = "ddd dd MMM HH:mm zzz";
+
+		var ch = CalculateurCalendrier.CalculerChangementsHeures(annee);
+
+		Console.WriteLine($"Changements d'heures de l'année {annee}");
+		Console.WriteLine("--------------------------------------------------------");
+		Console.WriteLine($"Heure d'été  : {ch.heureEte.ToString(format, fr)}");
+		Console.WriteLine();
+		Console.WriteLine($"Heure d'hiver: {ch.heureHiver.ToString(format, fr)}");
+		Console.WriteLine("--------------------------------------------------------");
+	}
+
+	public static int SaisirAnnee(int min, int max)
+	{
+		bool repOk;
+		int annee;
+		do
+		{
+			Console.WriteLine($"Entrez un année {min} et {max} :");
+			string? saisie = Console.ReadLine();
+			repOk = int.TryParse(saisie, out annee) && annee >= min && annee <= max;
+
+
+		} while (!repOk);
+
+		return annee;
+	}
+
+	public static DateOnly VotreAnniversaire(int annee)
+	{
+		bool repOk;
+		DateOnly date = default;
+		string format = "dd/MM";
+		var fr = CultureInfo.GetCultureInfo("fr-FR");
+
+		do
+		{
+			Console.WriteLine($"Entrez votre date d'anniversaire au format (ex 25/12) : ");
+			string? saisie = Console.ReadLine();
+			repOk =
+				DateOnly.TryParseExact(
+					saisie,
+					format,
+					fr,
+					DateTimeStyles.AllowWhiteSpaces,
+					out DateOnly jm);
+
+			if (!repOk)
+			{
+				Console.WriteLine("Erreur : format invalide.");
+				continue;
+			}
+			try
+			{
+				date = new DateOnly(annee, jm.Month, jm.Day);
+			}
+			catch
+			{
+				repOk = false;
+				Console.WriteLine("Erreur : date impossible pour cette année.");
+			}
+
+
+		} while (!repOk);
+
+		return date;
+
+	}
+
+	public static void AfficherAnniversaire(int annee)
+	{
+		DateOnly anniversaire = VotreAnniversaire(annee);
+
+		var fr = CultureInfo.GetCultureInfo("fr-FR");
+		string jour = anniversaire.ToString("dddd", fr);
+
+      Console.WriteLine(
+			$"En {annee}, votre anniversaire sera un {jour}.");
+	}
 
 }
