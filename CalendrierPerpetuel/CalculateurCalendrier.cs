@@ -212,7 +212,32 @@ internal static class CalculateurCalendrier
 		return (passageHeureEte, passageHeureHiver);
 	}
 
-	private static DateOnly DernierDimanche(int annee, int mois)
+   /*CODE DE DYMA
+	 * public static (DateTimeOffset, DateTimeOffset) CalculerChangementsHeures(int année)
+	{
+		DateTimeOffset dtoHeureEté, dtoHeureHiver;
+
+		// Heure d'été (dernier dimanche de mars)
+		DateTime tmpDate = new DateTime(année, 3, 31);
+		while (tmpDate.DayOfWeek != DayOfWeek.Sunday)
+			tmpDate = tmpDate.AddDays(-1);
+
+		// Le changement se fait à 2h du matin (ancienne heure)
+		dtoHeureEté = new DateTimeOffset(tmpDate.AddHours(2), new TimeSpan(1, 0, 0));
+
+		// Heure d'hiver (dernier dimanche d'octobre)
+		tmpDate = new DateTime(année, 10, 31);
+		while (tmpDate.DayOfWeek != DayOfWeek.Sunday)
+			tmpDate = tmpDate.AddDays(-1);
+
+		// Le changement se fait à 3h du matin (ancienne heure)
+		dtoHeureHiver = new DateTimeOffset(tmpDate.AddHours(3), new TimeSpan(2, 0, 0));
+
+		return (dtoHeureEté, dtoHeureHiver);
+	}
+	 */
+
+   private static DateOnly DernierDimanche(int annee, int mois)
 	{
 		DateOnly d = new DateOnly(annee, mois, DateTime.DaysInMonth(annee, mois));
 		while (d.DayOfWeek != DayOfWeek.Sunday)
@@ -225,7 +250,7 @@ internal static class CalculateurCalendrier
 		var fr = CultureInfo.GetCultureInfo("fr-FR");
 		string format = "ddd dd MMM HH:mm zzz";
 
-		var ch = CalculateurCalendrier.CalculerChangementsHeures(annee);
+		var ch = CalculerChangementsHeures(annee);
 
 		Console.WriteLine($"Changements d'heures de l'année {annee}");
 		Console.WriteLine("--------------------------------------------------------");
@@ -254,21 +279,21 @@ internal static class CalculateurCalendrier
 	public static DateOnly VotreAnniversaire(int annee)
 	{
 		bool repOk;
-		DateOnly date = default;
+		DateOnly date = new DateOnly();
 		string format = "dd/MM";
 		var fr = CultureInfo.GetCultureInfo("fr-FR");
 
 		do
 		{
 			Console.WriteLine($"Entrez votre date d'anniversaire au format (ex 25/12) : ");
-			string? saisie = Console.ReadLine();
+			string? anniv = Console.ReadLine();
 			repOk =
 				DateOnly.TryParseExact(
-					saisie,
+					anniv,
 					format,
 					fr,
 					DateTimeStyles.AllowWhiteSpaces,
-					out DateOnly jm);
+					out date);
 
 			if (!repOk)
 			{
@@ -277,7 +302,7 @@ internal static class CalculateurCalendrier
 			}
 			try
 			{
-				date = new DateOnly(annee, jm.Month, jm.Day);
+				date = new DateOnly(annee, date.Month, date.Day);
 			}
 			catch
 			{
@@ -299,8 +324,25 @@ internal static class CalculateurCalendrier
 		var fr = CultureInfo.GetCultureInfo("fr-FR");
 		string jour = anniversaire.ToString("dddd", fr);
 
-      Console.WriteLine(
-			$"En {annee}, votre anniversaire sera un {jour}.");
+      int anneeCourante = DateTime.Today.Year;
+
+      if (annee < anneeCourante)
+		{
+         Console.WriteLine(
+         $"En {annee}, votre anniversaire était un {jour}.");
+      }
+		else if (annee == anneeCourante) 
+		{
+         Console.WriteLine(
+         $"En {annee}, votre anniversaire est un {jour}.");
+      }
+      else
+      {
+          
+			Console.WriteLine(
+					$"En {annee}, votre anniversaire sera un {jour}.");
+			}
+
 	}
 
 }
