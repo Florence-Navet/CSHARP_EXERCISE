@@ -63,7 +63,13 @@ internal class Notation
 
    public static void AfficherRésultatsConcours()
    {
+
+      
       var etudiants = ChargerDonnées();
+
+      int NbAdmis = 5;
+
+      if (etudiants == null) return;
 
       var etudiantsTries = etudiants.OrderByDescending(e => e.note).ToList();
 
@@ -73,14 +79,14 @@ internal class Notation
          var (mentionEnum, libelle) = GetMention(e.note);
          //string mention = GetMention(e.note);
 
-         string admis = (i < 50) ? "Admis" : "";
+         string admis = (i < NbAdmis) ? "Admis" : "";
 
          Console.WriteLine($"{e.nom,-12} {e.prenom,-12} : {e.note,5:F1}  {libelle,-12} {admis}");
 
          //Console.WriteLine($"{e.nom,-12} {e.prenom,-12} : {e.note,5:F1}  {mention,-12} {admis}");
 
       }
-      Console.WriteLine($"50 étudiants ont été admis sur {etudiants.Count}");
+      Console.WriteLine($"{NbAdmis} étudiants ont été admis sur {etudiants.Count}");
    }
 }
 
