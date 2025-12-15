@@ -18,10 +18,13 @@ internal class Program
       ChargerDonnées();
       AfficherRésultatsConcours();
       Console.ReadKey();
+      Console.Clear();
       AfficherEtudiantsEtrangerAdmis();
       Console.ReadKey();
+      Console.Clear();
       AfficherEtudiantsFrançaisBoursiers();
       Console.ReadKey();
+      Console.Clear();
       MethodeAppel();
      
    }

@@ -9,8 +9,10 @@ using System.Threading.Tasks;
 
 namespace Concours;
 
-public enum Etranger { Oui = 0, Non = 1 }
-public enum Boursier { Oui = 0, Non = 1 }
+[Flags] internal enum Etranger { Oui = 0, Non = 1 }
+[Flags] internal enum Boursier { Oui = 0, Non = 1 }
+
+//[Flags] internal enum Status { Aucun = 0, Etranger = 1, Boursier =2, Admis = 4}
 internal class DAL
    {
 
@@ -69,6 +71,8 @@ internal class DAL
       }
       return etudiants;
    }
+
+
 
    public static List<(string nom, string prenom)>
 RemplacerEtudiantsAdmis(string nomRefus, string prenomRefus)
