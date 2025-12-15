@@ -90,26 +90,54 @@ Console.WriteLine(new string('-', 65));
    {
       var refus = new (string nom, string prenom)[] { ("Douglas", "Léa"), ("Cartier", "Claude"), ("Leduc", "Justin") };
 
-      foreach (var r in refus)
+      var (admis, remplaçants) = RemplacerEtudiantsAdmis(refus);
+
+      for (int i = 0; i < refus.Length; i++)
       {
-         var anciensAdmis = RemplacerEtudiantsAdmis(r.nom, r.prenom);
-
-         var remplaçant = anciensAdmis.Last();
          AfficherTexte(
-             $"Remplacement de {r.nom} {r.prenom} par {remplaçant.nom} {remplaçant.prenom}", ConsoleColor.DarkRed);
+             $"Remplacement de {refus[i].nom} {refus[i].prenom} par " +
+             $"{remplaçants[i].nom} {remplaçants[i].prenom}",
+             ConsoleColor.DarkRed
+         );
+      }
 
+      Console.WriteLine();
+      AfficherTexte("Nouvelle liste des admis après remplacements :", ConsoleColor.DarkYellow);
+
+      Console.WriteLine($"{"Nom",-20} {"Prénom",-20}");
+      Console.WriteLine(new string('-', 40));
+
+
+
+      foreach (var a in admis)
+      {
+
+
+         Console.WriteLine($"{a.nom,-20} {a.prenom,-20}");
 
 
 
       }
 
-
-
-      Console.WriteLine();
-      AfficherTexte("Nouvelle liste des admis après remplacements :\n", ConsoleColor.Black);
-      AfficherRésultatsConcours();
-
    }
+
+   //   Console.WriteLine();
+   //   AfficherTexte("Nouvelle liste des admis après remplacements :\n", ConsoleColor.Black);
+   //   Console.WriteLine(
+   //$"{"Nom          ",-20} {"Prénom",-20}");
+
+   //   Console.ResetColor();
+
+   //   Console.WriteLine(new string('-', 40));
+   //   foreach (var a in admis)
+   //   {
+
+     
+   //      Console.WriteLine($"{a.nom,-20} {a.prenom,-20}");
+   //   }
+
+
+   //}
 
 }
 

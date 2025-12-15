@@ -14,25 +14,25 @@ namespace Concours;
 
 //[Flags] internal enum Status { Aucun = 0, Etranger = 1, Boursier =2, Admis = 4}
 internal class DAL
-   {
+{
 
    static string[] LibellésEtranger = { "O", "N" };
    static string[] LibellésBoursier = { "O", "N" };
 
 
-   public static List<(string nom, string prenom, 
+   public static List<(string nom, string prenom,
       Etranger etranger,
       Boursier boursier,
       float note)> ChargerDonnées()
    {
       string[] lignes = File.ReadAllLines("Etudiants.csv");
 
-      var etudiants = new List<(string nom, string prenom, 
+      var etudiants = new List<(string nom, string prenom,
          Etranger etranger,
          Boursier boursier,
          float note)>();
-      
-      
+
+
 
       for (int i = 1; i < lignes.Length; i++)
       {
@@ -74,43 +74,53 @@ internal class DAL
 
 
 
-   public static List<(string nom, string prenom)>
-RemplacerEtudiantsAdmis(string nomRefus, string prenomRefus)
+   public static (List<(string nom, string prenom)> admis,
+                  (string nom, string prenom)[] remplacants)
+   RemplacerEtudiantsAdmis((string nom, string prenom)[] refus)
    {
       var etudiants = ChargerDonnées();
-
       if (etudiants == null) return new();
 
-      int NB_ADMIS = 50;
+      const int NB_ADMIS = 50;
 
+      // Classement par note
       var classement = etudiants
-         .OrderByDescending(e => e.note)
-         .ToList();
+          .OrderByDescending(e => e.note)
+          .ToList();
 
-
+      // Les admis initiaux
       var admis = classement.Take(NB_ADMIS).ToList();
+      var remplacants = new (string nom, string prenom)[refus.Length];
 
+      // Compteur de remplaçants (comme cptRemp chez ton prof)
+      int cptRemp = 0;
 
-      for (int i = 0; i < admis.Count; i++)
+      // Pour chaque étudiant qui refuse
+      foreach (var r in refus)
       {
-         if (admis[i].nom == nomRefus &&
-            admis[i].prenom == prenomRefus)
+         // On le cherche dans les admis
+         for (int i = 0; i < admis.Count; i++)
          {
-            admis[i] = classement[NB_ADMIS];
-            break;
+            if (admis[i].nom == r.nom &&
+                admis[i].prenom == r.prenom)
+            {
+               var nouveau = classement[NB_ADMIS + cptRemp];
+               // On remplace par le suivant en attente
+               admis[i] = nouveau;
+
+               remplacants[cptRemp] = (nouveau.nom, nouveau.prenom);
+               // On passe au prochain remplaçant
+               cptRemp++;
+               break;
+            }
          }
       }
 
-
-
-
-      return admis
-         .Select(e => (e.nom,e.prenom))
-         .ToList();
+      return (admis.Select(e => (e.nom, e.prenom)).ToList(),
+        remplacants)
+          ;
    }
-
 }
-
 /*
  * 
  * 
