@@ -4,6 +4,8 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Concours.DAL;
+using static Concours.Program;
 
 namespace Concours;
 
@@ -13,33 +15,7 @@ internal class Notation
 {
    static string[] LibellésMentions = { "Echec", "Passable", "Assez bien", "Bien", "Très bien" };
 
-   public static List<(string nom, string prenom, bool Etranger, bool Boursier, float note)> ChargerDonnées()
-   {
-      string[] lignes = File.ReadAllLines("Etudiants.csv");
-      var etudiants = new List<(string nom, string prenom, bool Etranger, bool Boursier, float note)>();
 
-      float moyenne = 0f;
-
-      for (int i = 1; i < lignes.Length; i++)
-      {
-         string[] infos = lignes[i].Split(';');
-         bool estEtranger = infos[2] == "O";
-         bool estBoursier = infos[3] == "O";
-         float note = float.Parse(infos[4], CultureInfo.GetCultureInfo("fr-FR"));
-
-         etudiants.Add((infos[0], infos[1], estEtranger, estBoursier, note));
-
-         //         Console.WriteLine(
-         //    $"{infos[0].PadRight(12)} | " +
-         //    $"{infos[1].PadRight(10)} | " +
-         //    $"{infos[2].PadRight(2)} | " +
-         //    $"{infos[3].PadRight(2)} | " +
-         //    $"{infos[4].PadRight(5)}"
-         //);
-         //      }
-      }
-      return etudiants;
-   }
 
    public static (Mentions, string) GetMention(double note)
    {
@@ -65,14 +41,25 @@ internal class Notation
    {
 
       
-      var etudiants = ChargerDonnées();
+      var etudiants = DAL.ChargerDonnées();
 
       int NbAdmis = 50;
 
       if (etudiants == null) return;
 
-      var etudiantsTries = etudiants.OrderByDescending(e => e.note).ToList();
+      //var etudiantsTries = etudiants.OrderByDescending(e => e.note).ToList();
+      var etudiantsTries = etudiants
+        .OrderBy(e => e.etranger)
+        .ThenBy(e => e.boursier)
+        .ThenByDescending(e => e.note)
+        .ToList();
+
       Console.WriteLine($"Résultat du concours :\n");
+
+      Console.WriteLine(
+    $"{"Nom",-12} {"Prénom",-12} {"Note",5} {"Mention",-12} {"Etr.",-4} {"Bours.",-6} Statut"
+);
+Console.WriteLine(new string('-', 65));
 
       for (int i = 0; i < etudiantsTries.Count; i++)
       {
@@ -82,13 +69,48 @@ internal class Notation
 
          string admis = (i < NbAdmis) ? "Admis" : "";
 
-         Console.WriteLine($"{e.nom,-12} {e.prenom,-12} : {e.note,5:F1}  {libelle,-12} {admis}");
+         Console.WriteLine(
+          $"{e.nom,-12} {e.prenom,-12} : " +
+          $"{e.note,5:F1} " +
+          $"{libelle,-12} " +
+          $"{e.etranger,-4} {e.boursier,-4} " +
+          $"{admis}"
+      );
+
+         //Console.WriteLine($"{e.nom,-12} {e.prenom,-12} : {e.note,5:F1}  {libelle,-12} {admis}");
 
          //Console.WriteLine($"{e.nom,-12} {e.prenom,-12} : {e.note,5:F1}  {mention,-12} {admis}");
 
       }
-      Console.WriteLine($"{NbAdmis} étudiants ont été admis sur {etudiants.Count}");
+      AfficherTexte($"{NbAdmis} étudiants ont été admis sur {etudiants.Count}", ConsoleColor.DarkYellow);
    }
+
+
+   public static void MethodeAppel()
+   {
+      var refus = new (string nom, string prenom)[] { ("Douglas", "Léa"), ("Cartier", "Claude"), ("Leduc", "Justin") };
+
+      foreach (var r in refus)
+      {
+         var anciensAdmis = RemplacerEtudiantsAdmis(r.nom, r.prenom);
+
+         var remplaçant = anciensAdmis.Last();
+         AfficherTexte(
+             $"Remplacement de {r.nom} {r.prenom} par {remplaçant.nom} {remplaçant.prenom}", ConsoleColor.DarkRed);
+
+
+
+
+      }
+
+
+
+      Console.WriteLine();
+      AfficherTexte("Nouvelle liste des admis après remplacements :\n", ConsoleColor.Black);
+      AfficherRésultatsConcours();
+
+   }
+
 }
 
 
