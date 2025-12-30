@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalendrierPerpetuel", "Cale
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Concours", "Concours\Concours.csproj", "{B2B980F6-A7BF-405E-B520-CC098EA45DB4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Boites", "Boites\Boites.csproj", "{E5D776CC-9A67-4FB4-8D71-87889D220C3B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{B2B980F6-A7BF-405E-B520-CC098EA45DB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B2B980F6-A7BF-405E-B520-CC098EA45DB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B2B980F6-A7BF-405E-B520-CC098EA45DB4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E5D776CC-9A67-4FB4-8D71-87889D220C3B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E5D776CC-9A67-4FB4-8D71-87889D220C3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E5D776CC-9A67-4FB4-8D71-87889D220C3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E5D776CC-9A67-4FB4-8D71-87889D220C3B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
