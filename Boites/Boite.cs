@@ -22,7 +22,7 @@ namespace Boites
 
      
 
-      public string Destinataire { get; private set; } = string.Empty;
+      public Etiquette? EtiquetteColis { get; private set; }
 
       public bool Fragile { get; private set; }
 
@@ -49,16 +49,23 @@ namespace Boites
       /// <summary>
       /// permet d'affecter la valeur de la prop du destinataire
       /// </summary>
-      public void Etiqueter(string dest)
+      public void Etiqueter(Client dest, long numeroColis) // relation d'agregation
       {
-         Destinataire = dest;
-       
+         EtiquetteColis = new Etiquette
+         {
 
+            Destinataire = dest,
+            NumeroColis = numeroColis,
+            Couleur = Couleurs.Blanc,
+            Format = Formats.XL
+
+
+         };
       }
 
-      public void Etiqueter(string dest, bool f)
+      public void Etiqueter(Client dest, long numeroColis, bool f)
       {
-         Etiqueter(dest);
+         Etiqueter(dest, numeroColis);
          Fragile = f;
          
       }

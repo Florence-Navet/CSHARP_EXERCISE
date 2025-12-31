@@ -11,11 +11,13 @@ namespace Boites
    public enum Formats { XS, S, M, L, XL }
    internal class Etiquette
    {
-      public required string Texte { get; init; } = string.Empty;
+      public required Client Destinataire { get; init; } 
 
-      public required Couleurs couleur { get; init; }
+      public required Couleurs Couleur { get; init; }
 
-      public required Formats format { get; init; }
+      public required Formats Format { get; init; }
+
+      public required long NumeroColis { get; init; }
 
    }
 }
