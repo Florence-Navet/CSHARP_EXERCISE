@@ -18,17 +18,47 @@
 
 
 
-         Boite b1 = new Boite(20, 10, 10);
+         Boite b1 = new Boite(20, 20, 10);
          Console.WriteLine($"Boite de volume {b1.Volume} en {b1.Matiere} ");
          Console.WriteLine($"Nombre de boites {Boite.NbBoites}");
 
-         Boite b2 = new Boite(30, 10, 15, Matieres.Bois);
+         Boite b2 = new Boite(20, 30, 10, Matieres.Bois);
          Console.WriteLine($"Boite de volume {b2.Volume} en {b2.Matiere} ");
          Console.WriteLine($"Nombre de boites {Boite.NbBoites}");
 
-         Boite b3 = new Boite(30, 10, 15, Matieres.Bois);
+         Boite b3 = new Boite(20, 30, 10, Matieres.Bois);
          Console.WriteLine($"Boite de volume {b3.Volume} en {b3.Matiere} ");
          Console.WriteLine($"Nombre de boites {Boite.NbBoites}");
+
+         #region Liste ajout d'élements
+         Console.WriteLine();
+         bool res = b3.TryAddArticle(new Article("lot de 6 assiettes plates", 4000));
+         Console.WriteLine(b3.Description);
+         res = b3.TryAddArticle(new Article("lot de 12 couverts", 1000));
+         Console.WriteLine(b3.Description);
+         res = b3.TryAddArticle(new Article("lot de 6 verres", 2000));
+         Console.WriteLine(b3.Description);
+
+
+
+;
+
+         Console.WriteLine("transfert :");
+
+         // Transfert du contenu de la boîte b3 vers la boîte vide b2 de même volume
+         int nbArticlesTransf = b3.TransfererContenuVers(b2);
+         Console.WriteLine($"{nbArticlesTransf} articles transférés");
+         Console.WriteLine(b3.Description);
+         Console.WriteLine(b2.Description);
+
+         // Transfert du contenu de la boîte b2 vers la boîte vide b1 trop petite
+         nbArticlesTransf = b2.TransfererContenuVers(b1);
+         Console.WriteLine($"{nbArticlesTransf} articles transférés");
+         Console.WriteLine(b2.Description);
+         Console.WriteLine(b1.Description);
+
+
+         #endregion
 
 
 
