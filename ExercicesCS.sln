@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Concours", "Concours\Concou
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Boites", "Boites\Boites.csproj", "{E5D776CC-9A67-4FB4-8D71-87889D220C3B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModelesDocs", "ModelesDocs\ModelesDocs.csproj", "{7CD347DB-4512-405F-B52A-E946D740343C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{E5D776CC-9A67-4FB4-8D71-87889D220C3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E5D776CC-9A67-4FB4-8D71-87889D220C3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E5D776CC-9A67-4FB4-8D71-87889D220C3B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7CD347DB-4512-405F-B52A-E946D740343C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7CD347DB-4512-405F-B52A-E946D740343C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7CD347DB-4512-405F-B52A-E946D740343C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7CD347DB-4512-405F-B52A-E946D740343C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

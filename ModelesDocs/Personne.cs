@@ -8,5 +8,7 @@ namespace ModelesDocs
 {
     internal class Personne
     {
+        public required string Nom { get; init; }
+        public required string Prenom { get; init; }
     }
 }
