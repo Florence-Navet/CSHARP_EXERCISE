@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Faturation.PrestationLongTerme">
+    <Position X="8" Y="4.75" Width="2" />
+    <Members>
+      <Field Name="_étapes" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>ABAAAAAAAAAAAAAEAAAAAQAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Prestation.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_étapes" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Etapes" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Faturation.Prestation">
+    <Position X="8.5" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAgAAAAAAEAAAAAAABAAAAgAAAAAAABAAAAAA=</HashCode>
+      <FileName>Prestation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Faturation.FactureSituation">
+    <Position X="5.75" Y="5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Facture.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Faturation.Facture">
+    <Position X="6" Y="0.5" Width="1.75" />
+    <Members>
+      <Field Name="cpt" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>IACAAAAAAAACAAQAAAAQAAAAAAAAAQAAAIABAEAAAgQ=</HashCode>
+      <FileName>Facture.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Client" />
+      <Property Name="Prestation" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Faturation.Etape">
+    <Position X="10.75" Y="3.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAABAMAAAAAAAAAAAQgAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Prestation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Facturation.Particulier">
+    <Position X="3.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAgAAACAAAAAAACAAAQAAAAA=</HashCode>
+      <FileName>Clients.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Facturation.Entreprise">
+    <Position X="1.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAgAAEAAAAAAAAAAAAAAAIAA=</HashCode>
+      <FileName>Clients.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Facturation.Client">
+    <Position X="2.75" Y="0.5" Width="1.5" />
+    <Members>
+      <Field Name="_compteur" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAEAAAAAgAAAAAAAACAAAAAQAAAAAA=</HashCode>
+      <FileName>Clients.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
