@@ -38,7 +38,7 @@ namespace ModelesDocs
 
         public string? Titre { get; set; } = string.Empty;
         public Personne? Auteur { get; set; }
-        public DateTime DateCreation { get;set} = DateTime.Now;
+        public DateTime DateCreation { get; set; } = DateTime.Now;
 
         public (double Haut, double bas, double gauche, double droite) Marges { get; set; }
 
@@ -66,6 +66,7 @@ namespace ModelesDocs
                 };
             }
             return doc;
-        #endregion
+            #endregion
+        }
     }
 }
