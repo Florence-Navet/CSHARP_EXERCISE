@@ -9,7 +9,7 @@ namespace Facturation
     public abstract class Client
     {
 
-        public static int _compteur;
+        private static int _compteur;
 
         public int Id { get; }
         public virtual string NomComplet { get; protected set; } = string.Empty;
